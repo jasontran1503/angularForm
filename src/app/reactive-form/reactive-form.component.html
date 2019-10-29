@@ -1,0 +1,79 @@
+<h2 class="text-danger text-center">Reactive form</h2>
+<div class="container jumbotron mt-3">
+    <h3 class="text-center">Contact us</h3>
+    <hr>
+    <form (ngSubmit)="onSubmit();" [formGroup]="formSignIn">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Your name" formControlName="name">
+                <small class="text-danger"
+                    *ngIf="formSignIn.controls['name']?.errors?.required && formSignIn.controls['name']?.touched">
+                    Bạn chưa nhập tên</small>
+            </div>
+        </div>
+        <!-- End name -->
+
+        <div formArrayName="email" *ngIf="email.controls.length">
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <div *ngFor="let item of email.controls; let index = index;">
+                        <input type="text" class="form-control" id="email" placeholder="Your email {{index+1}}"
+                            [formControlName]="index">
+                        <small class="text-danger"
+                            *ngIf="email.controls[index]?.errors?.required && email.controls[index]?.touched">
+                            Bạn chưa nhập email</small>
+                        <small class="text-danger"
+                            *ngIf="email.controls[index]?.errors?.email && email.controls[index]?.touched">
+                            Email không đúng</small>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button class="ml-5 btn btn-primary float-left" (click)="addEmail()">Add</button>
+                </div>
+            </div>
+        </div>
+        <!-- End email -->
+
+        <div formArrayName="phone" *ngIf="phone.controls.length">
+            <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-8">
+                    <div *ngFor="let item of phone.controls; let index = index;">
+                        <input type="text" class="form-control" id="phone" placeholder="Your phone {{index+1}}"
+                            [formControlName]="index">
+                        <small class="text-danger"
+                            *ngIf="phone.controls[index]?.errors?.required && phone.controls[index]?.touched">
+                            Bạn chưa nhập số điện thoại</small>
+                        <small class="text-danger"
+                            *ngIf="phone.controls[index]?.errors?.pattern && phone.controls[index]?.touched">
+                            Số điện thoại không đúng</small>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button class="ml-5 btn btn-primary float-left" (click)="addPhone()">Add</button>
+                </div>
+            </div>
+        </div>
+        <!-- End phone -->
+
+        <div class="form-group row">
+            <label for="message" class="col-sm-2 col-form-label">Message</label>
+            <div class="col-sm-10">
+                <textarea cols="6" rows="6" type="text" class="form-control" id="message"
+                    placeholder="Please enter your message here" formControlName="message">
+                </textarea>
+                <small class="text-danger"
+                    *ngIf="formSignIn.controls['message']?.errors?.required && formSignIn.controls['message']?.touched">
+                    Bạn chưa nhập tin nhắn</small>
+                <small class="text-danger"
+                    *ngIf="formSignIn.controls['message']?.errors?.minlength && formSignIn.controls['message']?.touched">
+                    Tin nhắn nhiều hơn 5 kí tự</small>
+            </div>
+        </div>
+        <!-- End message -->
+
+        <button type="submit" class="btn btn-primary float-right" [disabled]="formSignIn.invalid">Submit</button>
+    </form>
+</div>

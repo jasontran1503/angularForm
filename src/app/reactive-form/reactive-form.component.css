@@ -1,0 +1,10 @@
+input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+.jumbotron {
+    border: 1px solid black;
+}
+
+hr {
+    border: 1px solid black;
+}

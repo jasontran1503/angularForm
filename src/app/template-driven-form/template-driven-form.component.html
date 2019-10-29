@@ -1,0 +1,50 @@
+<h2 class="text-danger text-center">Template driven form</h2>
+<div class="container jumbotron mt-3">
+    <h3 class="text-center">Contact us</h3>
+    <hr>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form);">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Your name" #txtName="ngModel" ngModel
+                    name="name" required pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+                <small class="text-danger" *ngIf="txtName?.errors?.required && txtName.touched">
+                    Bạn chưa nhập tên</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" placeholder="Your email" #txtEmail="ngModel" ngModel
+                    name="email" required email>
+                <small class="text-danger" *ngIf="txtEmail?.errors?.required && txtEmail.touched">Bạn chưa nhập
+                    email</small>
+                <small class="text-danger" *ngIf="txtEmail?.errors?.email && txtEmail.touched">Email không đúng định
+                    dạng</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="phone" placeholder="Your phone" #txtPhone="ngModel" ngModel
+                    name="phone" required pattern="[0-9]+">
+                <small class="text-danger" *ngIf="txtPhone?.errors?.required && txtPhone.touched">Bạn chưa nhập số điện
+                    thoại</small>
+                <small class="text-danger" *ngIf="txtPhone?.errors?.pattern && txtPhone.touched">Số điện thoại không
+                    đúng</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="message" class="col-sm-2 col-form-label">Message</label>
+            <div class="col-sm-10">
+                <textarea cols="6" rows="6" type="text" class="form-control" id="message"
+                    placeholder="Please enter your message here" #txtMessage="ngModel" ngModel name="message" required
+                    minlength="5">
+                </textarea>
+                <small class="text-danger" *ngIf="txtMessage?.errors?.required && txtMessage.touched">
+                    Bạn chưa nhập tin nhắn</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
