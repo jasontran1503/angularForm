@@ -26,7 +26,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.formSignIn);
+    console.log(this.formSignIn.value);
   }
 
   get email(): FormArray {
@@ -36,6 +36,10 @@ export class ReactiveFormComponent implements OnInit {
   addEmail(){
     this.email.push(this.fb.control('', [Validators.required, Validators.email]));
   }
+
+  removeEmail(i: number) {
+    this.email.removeAt(i);
+  }
   
   get phone(): FormArray {
     return this.formSignIn.get('phone') as FormArray;
@@ -43,5 +47,9 @@ export class ReactiveFormComponent implements OnInit {
 
   addPhone(){
     this.phone.push(this.fb.control('', [Validators.required, Validators.pattern("[0-9]+")]));
+  }
+
+  removePhone(i: number) {
+    this.phone.removeAt(i);
   }
 }
