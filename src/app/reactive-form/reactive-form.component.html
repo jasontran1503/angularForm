@@ -10,6 +10,9 @@
                 <small class="text-danger"
                     *ngIf="formSignIn.controls['name']?.errors?.required && formSignIn.controls['name'].touched">
                     Bạn chưa nhập tên</small>
+                <small class="text-danger"
+                    *ngIf="formSignIn.controls['name']?.errors?.pattern && formSignIn.controls['name'].touched">
+                    Tên chỉ chứa kí tự là chữ</small>
             </div>
         </div>
         <!-- End name -->
