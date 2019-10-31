@@ -14,7 +14,7 @@ export class ReactiveFormComponent implements OnInit {
 
   ngOnInit() {
     this.formSignIn = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")]],
       email: this.fb.array([
         this.fb.control('', [Validators.required, Validators.email])
       ]),
